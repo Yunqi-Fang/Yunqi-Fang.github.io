@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" color-mode="light">
+<html lang="en" color-mode="light">
 
   <head>
   <meta charset="utf-8">
@@ -156,12 +156,12 @@
       <div class="post-title">算法范式系列--二分算法</div>
       <div class="post-attach">
         <span class="post-pubtime">
-          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
           2023-07-15 17:48:48
         </span>
         
               <span class="post-tags">
-                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
                 
                 <span class="span--tag mr-8">
                   <a href="/tags/LeetCode/" title="LeetCode">
@@ -404,18 +404,18 @@
             
               <a href="/2022/07/28/LeetCode-Hot-100-%E5%88%B7%E9%A2%98-21-30/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
-                <span>上一页</span>
+                <span>Prev</span>
               </a>
             
           </div>
           <div class="post-attach">
             <span class="post-pubtime">
-              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
               2023-07-15 17:48:48
             </span>
             
                   <span class="post-tags">
-                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
                     
                     <span class="span--tag mr-8">
                       <a href="/tags/LeetCode/" title="LeetCode">
@@ -441,7 +441,7 @@
           <div class="post-foot-prev">
             
               <a href="/2022/07/31/Java8-%E6%8F%90%E4%BE%9B%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B1%A0%E9%BE%99%E4%B9%8B%E6%9C%AF%E5%AE%9E%E8%B7%B5/" target="_self">
-                <span>下一页</span>
+                <span>Next</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
             
@@ -454,7 +454,7 @@
     <i class="iconfont icon-catalog"></i>
   </div>
   <div class="post-catalog hidden" id="catalog">
-    <div class="title">目录</div>
+    <div class="title">Contents</div>
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E8%8C%83%E5%BC%8F%E7%B3%BB%E5%88%97%E2%80%93%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95"><span class="toc-text">算法范式系列–二分算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%B3%E4%BA%8E%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95"><span class="toc-text">一、关于二分算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BA%8C%E5%88%86%E7%AE%97%E6%B3%95%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="toc-text">二、二分算法解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%83%BD%E5%90%A6%E7%94%A8%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-text">1. 能否用二分查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%80%89%E6%8B%A9%E4%BA%8C%E5%88%86%E8%8C%83%E5%BC%8F"><span class="toc-text">2. 选择二分范式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E4%B8%80%EF%BC%9A%E5%9C%A8%E5%8C%BA%E9%97%B4%E4%B8%AD%E6%9F%A5%E6%89%BE%E7%89%B9%E5%AE%9A%E7%9A%84%E5%80%BC"><span class="toc-text">范式一：在区间中查找特定的值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E4%BA%8C%EF%BC%9A%E6%9F%A5%E6%89%BE%E4%B8%80%E4%B8%AA%E6%95%B4%E6%95%B0%E5%8C%BA%E9%97%B4%E4%B8%AD%E7%9A%84%E4%B8%80%E4%B8%AA%E5%80%BC%E6%88%96%E8%80%85%E8%BE%B9%E7%95%8C%E6%83%85%E5%86%B5"><span class="toc-text">范式二：查找一个整数区间中的一个值或者边界情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8%E8%8C%83%E5%BC%8F%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81"><span class="toc-text">3. 使用范式编写代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E4%B8%80"><span class="toc-text">范式一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8C%83%E5%BC%8F%E4%BA%8C"><span class="toc-text">范式二</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%9A%84%E4%B8%A4%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F"><span class="toc-text">三、二分查找的两个编程范式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E8%8C%83%E5%BC%8F%E4%B8%80"><span class="toc-text">二分范式一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E8%8C%83%E5%BC%8F%E4%BA%8C"><span class="toc-text">二分范式二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%80%E4%BA%9BLeetCode%E5%85%B8%E5%9E%8B%E9%A2%98%E7%9B%AE"><span class="toc-text">四、一些LeetCode典型题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE"><span class="toc-text">1. 搜索插入位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-x-%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9"><span class="toc-text">2. x 的平方根</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%88%B1%E5%90%83%E9%A6%99%E8%95%89%E7%9A%84%E7%8F%82%E7%8F%82"><span class="toc-text">3. 爱吃香蕉的珂珂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE"><span class="toc-text">4. 在排序数组中查找元素的第一个和最后一个位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84"><span class="toc-text">5. 搜索旋转排序数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84-II"><span class="toc-text">6. 搜索旋转排序数组 II</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">7.寻找旋转排序数组中的最小值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-text">8. 最长上升子序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0"><span class="toc-text">9.寻找重复数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E7%8C%9C%E6%95%B0%E5%AD%97%E5%A4%A7%E5%B0%8F"><span class="toc-text">10.猜数字大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0"><span class="toc-text">11.寻找两个正序数组的中位数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%94%99%E8%AF%AF%E7%9A%84%E7%89%88%E6%9C%AC"><span class="toc-text">12. 第一个错误的版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-%E6%89%BE%E5%88%B0-K-%E4%B8%AA%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-text">13. 找到 K 个最接近的元素</span></a></li></ol></li></ol></li></ol>
@@ -489,7 +489,7 @@
         appKey: 'T2sc39tWFmhYbQiem6rTdkkc',
         placeholder: 'Welcome!',
         avatar: 'retro',
-        lang: 'zh-CN'
+        lang: 'en'
       })
     }
   </script>
@@ -634,7 +634,7 @@
       'use strict';
       var $input = document.getElementById(search_id);
       var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
       $.ajax({
         // 0x01. load xml file
         url: path,
@@ -730,7 +730,7 @@
             });
             str += "</ul>";
             if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
             }
             $resultContent.innerHTML = str;
           });
@@ -738,9 +738,9 @@
         error: function(xhr, status, error) {
           $resultContent.innerHTML = ""
           if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
           } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
           }
         }
       });

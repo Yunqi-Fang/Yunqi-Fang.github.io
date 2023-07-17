@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" color-mode="light">
+<html lang="en" color-mode="light">
 
   <head>
   <meta charset="utf-8">
@@ -156,12 +156,12 @@
       <div class="post-title">一次基于OAuth 2.0的第三方登录实践总结</div>
       <div class="post-attach">
         <span class="post-pubtime">
-          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
           2023-07-15 17:48:48
         </span>
         
               <span class="post-tags">
-                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                <i class="iconfont icon-tags mr-10" title="Tags"></i>
                 
                 <span class="span--tag mr-8">
                   <a href="/tags/OAuth/" title="OAuth">
@@ -321,18 +321,18 @@
             
               <a href="/2021/11/01/Linux%E7%9A%84%E4%B8%80%E4%BA%9B%E8%BF%9B%E9%98%B6%E6%8A%80%E8%83%BD/" target="_self">
                 <i class="iconfont icon-chevronleft"></i>
-                <span>上一页</span>
+                <span>Prev</span>
               </a>
             
           </div>
           <div class="post-attach">
             <span class="post-pubtime">
-              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              <i class="iconfont icon-updatetime mr-10" title="Update time"></i>
               2023-07-15 17:48:48
             </span>
             
                   <span class="post-tags">
-                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    <i class="iconfont icon-tags mr-10" title="Tags"></i>
                     
                     <span class="span--tag mr-8">
                       <a href="/tags/OAuth/" title="OAuth">
@@ -346,7 +346,7 @@
           <div class="post-foot-prev">
             
               <a href="/2021/11/20/%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9Alinux%E4%B8%8B%E7%9A%84%E4%BF%A1%E5%8F%B7%E4%B8%8E%E5%90%8E%E5%8F%B0%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/" target="_self">
-                <span>下一页</span>
+                <span>Next</span>
                 <i class="iconfont icon-chevronright"></i>
               </a>
             
@@ -359,7 +359,7 @@
     <i class="iconfont icon-catalog"></i>
   </div>
   <div class="post-catalog hidden" id="catalog">
-    <div class="title">目录</div>
+    <div class="title">Contents</div>
     <div class="catalog-content">
       
         <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%83%8C%E6%99%AF"><span class="toc-text">一、背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81OAuth-2-0"><span class="toc-text">二、OAuth 2.0</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%BB%A4%E7%89%8C"><span class="toc-text">1. 令牌</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E8%A7%92%E8%89%B2"><span class="toc-text">2. 角色</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%8E%88%E6%9D%83%E5%B1%82"><span class="toc-text">3. 授权层</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81OAuth%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%8E%88%E6%9D%83%E6%96%B9%E5%BC%8F"><span class="toc-text">三、OAuth的四种授权方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%8E%88%E6%9D%83%E7%A0%81%E5%BC%8F%EF%BC%88authorization-code%EF%BC%89"><span class="toc-text">1. 授权码式（authorization-code）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E9%9A%90%E8%97%8F%E5%BC%8F%EF%BC%88implicit%EF%BC%89"><span class="toc-text">2. 隐藏式（implicit）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%AF%86%E7%A0%81%E5%BC%8F%EF%BC%88password%EF%BC%89"><span class="toc-text">3. 密码式（password）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%87%AD%E8%AF%81%E5%BC%8F%EF%BC%88client-credentials%EF%BC%89"><span class="toc-text">4. 客户端凭证式（client credentials）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%9B%B4%E6%96%B0"><span class="toc-text">三、使用与更新</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E4%BB%A4%E7%89%8C%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">1. 令牌的使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E4%BB%A4%E7%89%8C%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text">2. 令牌的更新</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9C%A8%E4%BD%BF%E7%94%A8OAuth%E6%97%B6%E5%80%99%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-text">四、在使用OAuth时候需要注意的安全问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-CSRF%E5%8A%AB%E6%8C%81%E7%AC%AC%E4%B8%89%E6%96%B9%E8%B4%A6%E5%8F%B7"><span class="toc-text">1. CSRF劫持第三方账号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E9%A2%84%E9%98%B2%E6%8E%AA%E6%96%BD"><span class="toc-text">2. 预防措施</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-text">引用</span></a></li></ol>
@@ -394,7 +394,7 @@
         appKey: 'T2sc39tWFmhYbQiem6rTdkkc',
         placeholder: 'Welcome!',
         avatar: 'retro',
-        lang: 'zh-CN'
+        lang: 'en'
       })
     }
   </script>
@@ -539,7 +539,7 @@
       'use strict';
       var $input = document.getElementById(search_id);
       var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>首次搜索，正在载入索引文件，请稍后……<span></ul>";
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>First search, index file loading, please wait...<span></ul>";
       $.ajax({
         // 0x01. load xml file
         url: path,
@@ -635,7 +635,7 @@
             });
             str += "</ul>";
             if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>没有找到内容，请尝试更换检索词。<span></ul>";
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>No result<span></ul>";
             }
             $resultContent.innerHTML = str;
           });
@@ -643,9 +643,9 @@
         error: function(xhr, status, error) {
           $resultContent.innerHTML = ""
           if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>未找到search.xml文件，具体请参考：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The search.xml file was not found, please refer to：<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
           } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>请求失败，尝试重新刷新页面或稍后重试。<span></ul>";
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>The request failed, Try to refresh the page or try again later.<span></ul>";
           }
         }
       });
