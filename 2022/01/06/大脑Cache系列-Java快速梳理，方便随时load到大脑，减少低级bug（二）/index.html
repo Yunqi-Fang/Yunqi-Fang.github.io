@@ -1,0 +1,1015 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="背景  Java程序常常会遇到一些蛋疼的bug，最后发现，都是在一些很基础的方面造成的。大量的时间花在调试代码找低级bug上是十分没有性价比的。所以，再系统梳理下Java，是十分必要的。 已经反复学习和使用Java多次了，但只要有段时间没用Java之后，每次使用前都想要重头再梳理一遍。本文章将更注重Java只是的系统性，而不是细节性。 本文是本人大脑的专属Cache，所以逻辑上可能只有我自己能够看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大脑Cache系列 -- Java快速梳理，方便随时load到大脑，减少低级bug（二） ">
+<meta property="og:url" content="http://example.com/2022/01/06/%E5%A4%A7%E8%84%91Cache%E7%B3%BB%E5%88%97-Java%E5%BF%AB%E9%80%9F%E6%A2%B3%E7%90%86%EF%BC%8C%E6%96%B9%E4%BE%BF%E9%9A%8F%E6%97%B6load%E5%88%B0%E5%A4%A7%E8%84%91%EF%BC%8C%E5%87%8F%E5%B0%91%E4%BD%8E%E7%BA%A7bug%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="背景  Java程序常常会遇到一些蛋疼的bug，最后发现，都是在一些很基础的方面造成的。大量的时间花在调试代码找低级bug上是十分没有性价比的。所以，再系统梳理下Java，是十分必要的。 已经反复学习和使用Java多次了，但只要有段时间没用Java之后，每次使用前都想要重头再梳理一遍。本文章将更注重Java只是的系统性，而不是细节性。 本文是本人大脑的专属Cache，所以逻辑上可能只有我自己能够看">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-06T07:50:06.000Z">
+<meta property="article:modified_time" content="2023-07-15T09:48:48.725Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>大脑Cache系列 -- Java快速梳理，方便随时load到大脑，减少低级bug（二）  - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>CodeRat的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="大脑Cache系列 -- Java快速梳理，方便随时load到大脑，减少低级bug（二） "></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-06 15:50" pubdate>
+          2022年1月6日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">大脑Cache系列 -- Java快速梳理，方便随时load到大脑，减少低级bug（二） </h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><blockquote>
+<ul>
+<li>Java程序常常会遇到一些蛋疼的bug，最后发现，都是在一些很基础的方面造成的。大量的时间花在调试代码找低级bug上是十分没有性价比的。所以，再系统梳理下Java，是十分必要的。</li>
+<li>已经反复学习和使用Java多次了，但只要有段时间没用Java之后，每次使用前都想要重头再梳理一遍。本文章将更注重Java只是的系统性，而不是细节性。</li>
+<li>本文是本人大脑的专属Cache，所以逻辑上可能只有我自己能够看懂，见谅。</li>
+</ul>
+</blockquote>
+<h3 id="一、目录"><a href="#一、目录" class="headerlink" title="一、目录"></a>一、目录</h3><ul>
+<li>Java继承</li>
+<li>Java反射</li>
+<li>Java接口</li>
+<li>Lambda表达式</li>
+<li>Java异常</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="二、Java继承"><a href="#二、Java继承" class="headerlink" title="二、Java继承"></a>二、Java继承</h3><h5 id="Java与C-继承"><a href="#Java与C-继承" class="headerlink" title="Java与C++继承"></a>Java与C++继承</h5><ul>
+<li>子类 extends 父类，而C++是：符号</li>
+<li>Java只有公有继承，C++有公有继承和私有继承</li>
+<li>Java只支持单继承，多继承通过接口实现</li>
+<li>子类从父类继承所有的数据域和方法，但有一些不一定能够访问到。</li>
+<li>此外，子类只能通过覆盖来修改，以及增加方法，但绝对无法删除父类的任何方法和数据域。</li>
+</ul>
+<h5 id="覆盖方法"><a href="#覆盖方法" class="headerlink" title="覆盖方法"></a>覆盖方法</h5><ul>
+<li>覆盖：子类方法重写父类的方法，父类方法将会被覆盖，区别重载（本类方法之间）</li>
+<li>覆盖时，子类和父类要严格一致（访问类型，返回值，方法名，参数列表）<ul>
+<li>可以通过@Override来对子类的覆盖方法进行标记，来保障子类该方法成功覆盖了一个父类的方法，而不是定义了一个毫无相关的方法（没有匹配父类方法的时候，会编译报错）</li>
+</ul>
+</li>
+<li>被覆盖的父类方法依然可以通过super方法调用。</li>
+<li>super并不是像this那样是一个对象引用，<strong>super只是一个指示编译器调用父类方法的特殊关键字，所以不能将super赋值给另一个变量。</strong></li>
+<li>super()调用父类的构造器</li>
+</ul>
+<h5 id="多态与动态绑定"><a href="#多态与动态绑定" class="headerlink" title="多态与动态绑定"></a>多态与动态绑定</h5><ul>
+<li>多态：父类对象变量可以引用子类对象，且能够通过父类对象正确调用该对象的方法。</li>
+<li>动态绑定：在运行时，能够自动选择调用哪个方法。</li>
+<li>用途：有一组不同类型的对象数据，可以直接通过他们父类类型的数组来统一组织</li>
+<li>不能将父类引用赋值给子类变量，但是可以将子类引用赋值给父类对象，且不需要强制类型转换。</li>
+</ul>
+<h5 id="方法调用的过程"><a href="#方法调用的过程" class="headerlink" title="方法调用的过程"></a>方法调用的过程</h5><ul>
+<li><strong>对象在调用方法的时候，除了方法显式的参数之外，还有一个隐式参数，那便是对象本身，隐式参数不属于函数签名</strong></li>
+<li>1.根据方法名，选出本类和父类中所有候选方法（父类中的方法需要是public的）</li>
+<li>2.根据参数列表，进行重载解析，获得调用方法名字和参数类型，即函数签名（考虑子类覆盖父类）</li>
+<li>3.如果该方法是private、static、final、或者构造器，那么编辑器就可以确定调用哪个方法了，这个称为静态绑定</li>
+<li>4.可能存在多态的情况时，虚拟机会考虑到隐式参数对象的实际类型，选择调用对应类中的方法。依次实现运行时的动态绑定。</li>
+</ul>
+<h5 id="阻止继承-final类和方法"><a href="#阻止继承-final类和方法" class="headerlink" title="阻止继承 final类和方法"></a>阻止继承 final类和方法</h5><ul>
+<li>final类，不允许被继承</li>
+<li>final方法，子类不允许覆盖这个方法，final类中的所有方法都是final的。</li>
+</ul>
+<h5 id="对象强制类型转换"><a href="#对象强制类型转换" class="headerlink" title="对象强制类型转换"></a>对象强制类型转换</h5><ul>
+<li>只能在继承链上进行类型转换</li>
+<li>在将父类转成子类之前，最好使用instanceof检查是否转换错误</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(child <span class="hljs-keyword">instanceof</span> Manager)&#123; <span class="hljs-comment">// 不需要判null</span><br>  manager = child;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>在一些参数传递的时候可能会使用</li>
+</ul>
+<h5 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h5><ul>
+<li>为了进一步提升父类的通用能力</li>
+<li>抽象类：含有一个或者多个抽象方法的类，就是抽象类<ul>
+<li>抽象类和抽象方法需要使用abstract来修饰</li>
+<li>抽象类中是可以存在具体数据和具体方法的，可以存在一个抽象方法</li>
+</ul>
+</li>
+<li>抽象类是可以不包含抽象方法的</li>
+<li><strong>抽象类不能被实例化</strong>，必须通过子类实现所有的抽象方法才可以。</li>
+<li>虽然抽象类不能实例化，但可以通过抽象类变量引用子类对象（这是正常的父类子类特点）。</li>
+</ul>
+<h5 id="受保护的访问"><a href="#受保护的访问" class="headerlink" title="受保护的访问"></a>受保护的访问</h5><ul>
+<li>private：仅对本类可见</li>
+<li>public：对所有类可见，无限制</li>
+<li>protected：对本类和子类，以及本包类可见<ul>
+<li><strong>如果想一个方法或者数据能够被子类访问，需要设置protected修饰符</strong></li>
+</ul>
+</li>
+<li>默认情况：对本包类可见，<strong>对子类不可见</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">修饰符</th>
+<th align="center">本类</th>
+<th align="center">本包</th>
+<th align="center">子类</th>
+<th align="center">其他包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+</tr>
+<tr>
+<td align="center">private</td>
+<td align="center">yes</td>
+<td align="center">no</td>
+<td align="center">no</td>
+<td align="center">no</td>
+</tr>
+<tr>
+<td align="center">protected</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center">no</td>
+</tr>
+<tr>
+<td align="center">default</td>
+<td align="center">yes</td>
+<td align="center">yes</td>
+<td align="center"><strong>no</strong></td>
+<td align="center">no</td>
+</tr>
+</tbody></table>
+<h5 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h5><ul>
+<li>所有类的超类</li>
+<li>Java中只有基本类型不是对象，其他都是对象，都具有Object的方法和数据</li>
+<li>equals():<ul>
+<li><strong>在没重写的情况下，与&#x3D;&#x3D;的效果是一致的，判断的是地址而不是实际的内容。</strong></li>
+<li>String，Integer等类已经对equals()进行重写了。</li>
+<li>我们在实现自己类的时候，需要自己来实现equals。（在实现自己实现equals后，还需要实现hashcode）（很套路，很多IDE是支持一键自动生成的）</li>
+</ul>
+</li>
+<li>Class getClass()：获得该对象所属于的类<ul>
+<li>class.getName获得类名</li>
+</ul>
+</li>
+<li>hashcode(): 返回对象的散列值<ul>
+<li>规定：<strong>两个对象，如果equals为true，那么hashcode一定要保证相同</strong>，即相等的对象有相同的hashcode。</li>
+<li>默认的的hashcode都是参考了存储地址的，所以两个对象，默认的hashcode一定不一样，即便他们值可能是一样的。</li>
+<li>因此<strong>当自己实现equals的时候，对应的也要实现hashcode，来保证重要规则</strong></li>
+<li><strong>两个相等的对象必须要返回相同的hashcode码，但是相等的hashcode不一定是相等的变量</strong>，（hashcode的计算方式）</li>
+<li>java对象的hashcode设计是为了配合基于散列的集合,添加元素的时候，通过hashcode和equals来快速判断对象是否已经存在（大大减少了equals次数，比纯equals循环要好多了）</li>
+</ul>
+</li>
+<li>toString():将对象以字符串形式输出，常用于日志之类。Object中默认的为类名+Hash值</li>
+</ul>
+<h5 id="重写equals-Object-obj-方法（了解即可，可以IDE自动生成的，hh）"><a href="#重写equals-Object-obj-方法（了解即可，可以IDE自动生成的，hh）" class="headerlink" title="重写equals(Object obj)方法（了解即可，可以IDE自动生成的，hh）"></a>重写equals(Object obj)方法（了解即可，可以IDE自动生成的，hh）</h5><ul>
+<li>1.引用的是同一个对象吗</li>
+<li>2.obj为null吗？</li>
+<li>3.两个是同一个类吗</li>
+<li>4.obj强制转化成本类</li>
+<li>5.一次判断各个数据域是否相等</li>
+<li><strong>记得还要检查下hashcode是否要也要重写哦</strong></li>
+</ul>
+<h5 id="泛型数组-ArrayList"><a href="#泛型数组-ArrayList" class="headerlink" title="泛型数组 ArrayList"></a>泛型数组 ArrayList<Type></h5><ul>
+<li>普通数组无法再运行时更改数组的大小，可以使用泛型数组库，ArrayList</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;MyClass&gt; arrayList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>();<br></code></pre></td></tr></table></figure>
+<ul>
+<li>Java老版本中的Vector也可以实现动态数组，但没ArrayList有效。</li>
+<li>add(),向数组中添加一个元素，如果容量不够，会自动扩展</li>
+<li>ArrayList不支持数组的[]访问方式</li>
+<li>get(index),获取数组中index位置的元素</li>
+<li>set(index,item),替换数组中的某个元素</li>
+<li>size()，类似数组的length</li>
+<li>arrayList.ensureCapacity(100),预分配100大小的数组</li>
+<li>trimToSize(),当保证不再向数组中添加元素了，调用将释放多余分配的空间</li>
+<li>arrayList.toArray(array),为了方便数组的访问，可以通过ArrayList构造，然后转换成普通数组并处理</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 一种很好的实践</span><br>ArrayList&lt;X&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><span class="hljs-comment">// add item to list</span><br>X[] a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">X</span>[list.size()];<br>list.toArray(a);<br></code></pre></td></tr></table></figure>
+
+<h5 id="对象包装器与自动装箱"><a href="#对象包装器与自动装箱" class="headerlink" title="对象包装器与自动装箱"></a>对象包装器与自动装箱</h5><ul>
+<li>基本类型都有对应的类，Integer, Double,Boolean,Character，Void等</li>
+<li>他们的超类为Number</li>
+<li><strong>一旦包装器创建了，就不允许更改包装在其中的值了</strong></li>
+<li>自动装箱和自动拆箱：能在基础类型和对应的类之间自动转换，这是由Java编译器实现的，添加了装箱拆箱语句</li>
+<li><strong>Java的&#x3D;&#x3D;号检测的是两个变量指向的地址是否相同</strong>，所以不同于基础类型，装箱后要用equals方法来判断值是否相等（他们重写了equals方法）</li>
+<li>字符串Int转换：<code>int x = Integer.paseInt(&quot;1&quot;)</code>或者<code>Integer.valueOf(&quot;100&quot;)</code></li>
+</ul>
+<h5 id="参数可变的方法"><a href="#参数可变的方法" class="headerlink" title="参数可变的方法"></a>参数可变的方法</h5><ul>
+<li>Java方法的参数数目可以是可变的</li>
+<li>省略号<code>...</code>,可以出现在参数列表的最后，<strong>其实和数组的效果的类似的</strong></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">printf(String fmt, Object...args);<br></code></pre></td></tr></table></figure>
+
+<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><blockquote>
+<p>Java反射机制能够在程序运行时，对于任意一个类，都能够知道这个类的所有属性和方法。对于任意一个对象，在有权限的情况下，能够调用方法和属性。即，动态获取信息以及动态调用对象方法的机制。</p>
+</blockquote>
+<ul>
+<li>反射，能够分析类能力，能够动态操纵Java代码</li>
+<li>主要用户工具构造，在实际的应用中使用不多(也不建议在应用应用开发中过多使用)</li>
+<li>Class类，Java运行时系统为每个类维护一个Class类</li>
+<li>getClass(),Name.class</li>
+</ul>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><ul>
+<li>抽象类是对类的抽象，而接口是对行为的抽象。</li>
+<li><strong>接口中所有方法都自动是public，不需要额外加public修饰符（但在实现接口的类中，方法前必须加public）</strong></li>
+<li>接口中<strong>不能含有实例域（接口没有实例）</strong>，但可以含有<strong>常量和静态常量</strong></li>
+<li>对于方法，<strong>接口中不能提供实现</strong>（Java8后支持默认实现）</li>
+<li>接口不是类，不能通过new被实例化成对象。</li>
+<li>不存在接口实例化的对象，但是存在<strong>接口变量，且接口变量可以引用实现了它的类的对象</strong>。</li>
+<li>接口支持继承另一个接口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Comparable</span> &#123; <span class="hljs-comment">// java.lang.Comparable</span><br>  <span class="hljs-type">int</span> <span class="hljs-title function_">compareTo</span><span class="hljs-params">(Object obj)</span>;<br>&#125;<br><br><span class="hljs-keyword">public</span> Test <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Comparable</span> &#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">compareTo</span><span class="hljs-params">(Object obj)</span> &#123; <span class="hljs-comment">// 实现类时候，需要public</span><br>    <span class="hljs-keyword">return</span> Double.compare(salary,obj.salary); <span class="hljs-comment">// 相减比较不适合浮点数</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Java常用的内置接口</p>
+<ul>
+<li>Compalrable</li>
+<li>Cloneable</li>
+</ul>
+</li>
+<li><p>接口的意义在于统一服务的对外接口：Java是一种强类型语言，使用接口来解决类型的问题，编译器不需要再执行的时候进行类型检查（因为编译器认为只要这个类实现了这个接口，就一定能处理）</p>
+</li>
+<li><p>接口与继承（抽象类）</p>
+<ul>
+<li>Java不支持多继承，因为多继承会使语言更复杂</li>
+<li>Java通过接口来实现多继承，一个类可以实现多个接口</li>
+</ul>
+</li>
+<li><p>Java8之后，接口中可以存在静态方法并实现之了，目的是，这样就可以避免某些工具类必须要提供伴随类了。</p>
+</li>
+<li><p>默认方法：</p>
+<ul>
+<li>在我们实现接口的时候，很多时候只需要实现部分方法，默认方法为接口中的方法提供一个默认的实现。</li>
+<li>用default修饰符，然后就可以在接口中简单实现这些方法了。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="Lambda表达式"></a>Lambda表达式</h3><ul>
+<li>将一个代码块像参数一样传递到另一个对象中（定时器，响应等），这个代码块会在未来的某个时刻会被调用。</li>
+<li>对比通过传入对象来实现，Lambda表达式更优雅，使得Java支持函数式编程。</li>
+<li><code>(参数列表) -&gt; &#123;代码块&#125;</code>，Lambda没有返回类型</li>
+<li><strong>函数式接口</strong>：只含有一个抽象方法的接口，可以把Lambda赋值给一个函数式接口变量</li>
+</ul>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">@FunctionalInterface <span class="hljs-comment">// 可选，用于编译检查是否只有一个抽象方法，类似Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">FunctionalInterface</span>&lt;<span class="hljs-symbol">T</span>&gt;&#123;<br>	<span class="hljs-built_in">void</span> accept(T t);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>Lambda表达式可以转化为对应的接口形式</li>
+<li>Lambda表达式实际上是一个<strong>函数</strong>，传入之后会在某处会被执行，而不是一个对象。</li>
+<li>所以不能将一个Lambda表达式赋值给一个Object变量，因为Object不是一个函数式接口</li>
+<li>当我们想使用Lambda的时候，需要为其提供一个函数式接口</li>
+<li>方法引用:<code>rrays.sort(strings,String::compareToIgnoreCase)</code>,其实也很好理解，因为Lambda是函数</li>
+<li>Comparator函数式接口</li>
+</ul>
+<h5 id="Lambda表达式的变量作用域"><a href="#Lambda表达式的变量作用域" class="headerlink" title="Lambda表达式的变量作用域"></a>Lambda表达式的变量作用域</h5><ul>
+<li>Lambda中的变量<ul>
+<li>代码块中声明的，自己的</li>
+<li>参数传入的</li>
+<li><strong>自由变量</strong>，如何保证Lambda执行的时候，这些外部的变量还存在，没有被销毁？</li>
+</ul>
+</li>
+<li>捕获，闭包：Lambda会存储自由变量的值，称为捕获。Lambda的代码块以及自由变量组成一个<strong>闭包</strong></li>
+<li><strong>Lambda中只能引用值不会改变的变量&#x2F;常量</strong></li>
+<li><strong>Lambda的体和块有相同的作用域</strong>，所以块中不能定义与Lambda同一块中的已有变量。</li>
+</ul>
+<h3 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dolphin0520/p/3811445.html">博客</a></p>
+</blockquote>
+<h5 id="成员内部类"><a href="#成员内部类" class="headerlink" title="成员内部类"></a>成员内部类</h5><ul>
+<li>定义在另一个类中的类。</li>
+<li><strong>并不是每个外部类的对象实例都有一个内部类实例</strong>，内部类实例对象是由外部类的方法来触发创建的。</li>
+<li>特点：<ul>
+<li><strong>内部类可以访问外部类的实例域</strong>，因为内部类具有外部类的引用。<ul>
+<li>访问的外部实例域必须是final，这个和Lambda类似。</li>
+<li>内部类对象中有一个隐式引用，它指向创建它的外部类对象（在内部类的构造函数中记录）。</li>
+</ul>
+</li>
+<li>局部内部类对同一个包中的其他类不可见</li>
+<li>创建内部类的前提是必须先创建外部类</li>
+</ul>
+</li>
+</ul>
+<h5 id="局部内部类"><a href="#局部内部类" class="headerlink" title="局部内部类"></a>局部内部类</h5><ul>
+<li>定义在一个方法或者一个作用域里面的类，它和成员内部类的区别在于局部内部类的访问仅限于方法内或者该作用域内。</li>
+<li>和局部变量一样，不能有public、protected、private以及static修饰符的。</li>
+</ul>
+<h5 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h5><ul>
+<li>只创建这个类的对象，但并没有为该类提供名字。</li>
+<li>使用的最多，在编写事件监听的代码时使用匿名内部类不但方便，而且使代码更加容易维护。</li>
+<li>一般只用在事件监听，接口回调等</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ActionListener</span> <span class="hljs-variable">listener</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AcitonListener</span>() &#123;<br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">actionPerformed</span><span class="hljs-params">(ActionEvent event)</span>&#123;<br>    <span class="hljs-comment">// do something</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>类似的，在安卓SDK，Swing中用的很多，能够简化代码。但有了Lambda，还能够更简化。</li>
+</ul>
+<h5 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h5><ul>
+<li>多一个static关键字，不需要依附外部类而存在。</li>
+</ul>
+<h5 id="对比Lambda表达式和匿名内部类"><a href="#对比Lambda表达式和匿名内部类" class="headerlink" title="对比Lambda表达式和匿名内部类"></a>对比Lambda表达式和匿名内部类</h5><ul>
+<li>匿名内部类仍然是类，编译会生成.class文件，Lambda通过invokedynamic指令插入到主类对应的位置执行</li>
+<li>对于匿名类，关键词 this 解读为匿名类，而对于 Lambda 表达式，关键词 this 解读为写就 Lambda 的外部类。</li>
+<li>Java 编译器编译 Lambda 表达式并将他们转化为类里面的私有函数</li>
+</ul>
+<h3 id="Java异常"><a href="#Java异常" class="headerlink" title="Java异常"></a>Java异常</h3><h5 id="异常层次结构"><a href="#异常层次结构" class="headerlink" title="异常层次结构"></a>异常层次结构</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">- Throwable<br>  - Error<br>    - Java运行时系统内部错误，以及资源耗尽错误<br>    - 应用程序无法抛出，由系统自动抛出，必然导致程序终止<br>  - Exception<br>    - IOExpection<br>      - 与程序无关，而与IO等有关的错误<br>    - RuntimeException<br>      - 由程序本身错误导致的异常（数组越界，<span class="hljs-literal">null</span>指针，错误类型转换）<br></code></pre></td></tr></table></figure>
+<h5 id="受查与非受查异常"><a href="#受查与非受查异常" class="headerlink" title="受查与非受查异常"></a>受查与非受查异常</h5><ul>
+<li><strong>非受查异常</strong>：Error以及RuntimeException，不需要显示声明，因为这些异常是可以努力避免的，处理它们比消除它们要好多了。</li>
+<li><strong>受查异常</strong>：IOException，<strong>编译器会检查程序是否为这类异常提供了异常处理器</strong>，需要在程序中显示声明</li>
+<li>声明受查异常<ul>
+<li>一个方法不仅可以告诉编译器参数和返回值，还可以告诉编译器可能存在的异常</li>
+<li>什么时候需要给方法声明受查异常<ul>
+<li>1.方法的内部调用了某个抛出受查异常的方法</li>
+<li>2.方法内部通过throw抛出了一个受查异常</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 声明受查异常，是throws不是throw，因为可以是一个异常列表</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">readFileFunc</span><span class="hljs-params">(File file)</span> <span class="hljs-keyword">throws</span> FileNotFoundException &#123; &#125;<br><span class="hljs-comment">// 抛出一个异常</span><br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Exception</span>();<br></code></pre></td></tr></table></figure>
+
+<h5 id="异常捕获"><a href="#异常捕获" class="headerlink" title="异常捕获"></a>异常捕获</h5><ul>
+<li>try-catch语句<ul>
+<li>若try子句中没有异常则跳过catch子句，程序正常返回。</li>
+<li>try子句中发生错误，终止try子句执行，<strong>程序无返回值</strong>。<ul>
+<li>若catch子句能够捕获异常，则直接执行catch子句中的处理语句。</li>
+<li>若catch子句无法捕获，则将该异常传递到上级调用方法来处理。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>处理策略<ul>
+<li>对于知道如何处理的受检异常，则直接捕获处理</li>
+<li>对于不知道如何处理的受检异常，则传递到调用方进行处理</li>
+<li>传递一个异常，需要在方法后添加<code>throws</code>关键字，告知调用方，提供需要的对应的异常处理器</li>
+</ul>
+</li>
+<li>捕获多个异常</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;<br>  ...<br>&#125; <span class="hljs-keyword">catch</span>(FileNotFoundException e)&#123;<br>  ...<br>&#125; <span class="hljs-keyword">catch</span>(IOException e)&#123;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>再此抛出异常链，<code>e.initCause(pre_e)</code></li>
+</ul>
+<h5 id="finally子句"><a href="#finally子句" class="headerlink" title="finally子句"></a>finally子句</h5><ul>
+<li>无论是否抛出异常，都会执行</li>
+<li>finally子句中也可能抛出异常，最好将try-catch和try-finally解耦</li>
+<li>当try和finally中都有return的时候，finally中的return先执行，且最终的返回值会被finally覆盖。即，如果finally中有return，try中的return无意义</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;<br>  <span class="hljs-keyword">try</span>&#123;  <span class="hljs-comment">// 内部try用于释放资源</span><br>    ...<br>  &#125; <span class="hljs-keyword">finally</span> &#123;<br>    io.close();<br>  &#125;<br>&#125; <span class="hljs-keyword">catch</span> (IOExpection)&#123;<br>  <span class="hljs-comment">// error message</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ul>
+<li>带资源的try，自动解决资源释放处理问题</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> (<span class="hljs-type">Resource</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> ...)&#123;<br>  res...<br>&#125;<span class="hljs-comment">// 执行完毕之后，会自动调用res.close()</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="使用异常须知"><a href="#使用异常须知" class="headerlink" title="使用异常须知"></a>使用异常须知</h5><ul>
+<li>异常的开销比较大，不要使用异常来实现正常的业务。只在异常情况下使用异常</li>
+<li>不要过于细分异常</li>
+<li>不要压制异常，便于分析程序错误</li>
+</ul>
+<h3 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h3><ul>
+<li>断言机制允许在测试期间向代码中插入一些检查语句，代码发布之后，会自动移除</li>
+<li>关键字，assert</li>
+<li>一般用不到</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%A4%A7%E8%84%91Cache/" class="category-chain-item">大脑Cache</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>大脑Cache系列 -- Java快速梳理，方便随时load到大脑，减少低级bug（二） </div>
+      <div>http://example.com/2022/01/06/大脑Cache系列-Java快速梳理，方便随时load到大脑，减少低级bug（二）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/27/%E5%A4%A7%E8%84%91Cache%E7%B3%BB%E5%88%97-Java%E5%BF%AB%E9%80%9F%E6%A2%B3%E7%90%86%EF%BC%8C%E6%96%B9%E4%BE%BF%E9%9A%8F%E6%97%B6load%E5%88%B0%E5%A4%A7%E8%84%91%EF%BC%8C%E5%87%8F%E5%B0%91%E4%BD%8E%E7%BA%A7bug%EF%BC%88%E4%B8%89%EF%BC%89/" title="大脑Cache系列 -- Java快速梳理，方便随时load到大脑，减少低级bug（三）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">大脑Cache系列 -- Java快速梳理，方便随时load到大脑，减少低级bug（三）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/02/%E5%A4%A7%E8%84%91Cache%E7%B3%BB%E5%88%97--Java%E5%BF%AB%E9%80%9F%E6%A2%B3%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/" title="大脑Cache系列--Java快速梳理，方便随时load到大脑，减少低级bug (一)">
+                        <span class="hidden-mobile">大脑Cache系列--Java快速梳理，方便随时load到大脑，减少低级bug (一)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -19,19 +19,23 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="测试">
-<meta property="og:url" content="http://example.com/2024/11/12/%E6%B5%8B%E8%AF%95/index.html">
+    <meta name="description" content="1. 数组1.1 二分查找 通用模板：  1234567891011121314151617181920&#x2F;&#x2F; 闭区间class Solution &#123;public:    int search(vector&lt;int&gt;&amp; nums, int target) &#123;        int left &#x3D; 0;        int right &#x3D; nums.size()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode刷题记录">
+<meta property="og:url" content="http://example.com/2024/11/12/Leetcode%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 数组1.1 二分查找 通用模板：  1234567891011121314151617181920&#x2F;&#x2F; 闭区间class Solution &#123;public:    int search(vector&lt;int&gt;&amp; nums, int target) &#123;        int left &#x3D; 0;        int right &#x3D; nums.size()">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-11-12T13:22:39.000Z">
-<meta property="article:modified_time" content="2024-11-12T13:22:39.642Z">
+<meta property="article:published_time" content="2024-11-12T14:14:00.000Z">
+<meta property="article:modified_time" content="2024-11-12T14:14:35.621Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>测试 - Hexo</title>
+  <title>LeetCode刷题记录 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -208,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="测试"></span>
+            <span id="subtitle" data-typed-text="LeetCode刷题记录"></span>
           
         </div>
 
@@ -219,7 +223,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-12 21:22" pubdate>
+        <time datetime="2024-11-12 22:14" pubdate>
           2024年11月12日 晚上
         </time>
       </span>
@@ -231,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          321 字
         
       </span>
     
@@ -242,7 +246,7 @@
         
         
         
-          1 分钟
+          3 分钟
         
       </span>
     
@@ -279,12 +283,28 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">测试</h1>
+            <h1 id="seo-header">LeetCode刷题记录</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h1 id="1-数组"><a href="#1-数组" class="headerlink" title="1. 数组"></a>1. 数组</h1><h2 id="1-1-二分查找"><a href="#1-1-二分查找" class="headerlink" title="1.1 二分查找"></a>1.1 二分查找</h2><ol>
+<li>通用模板：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 闭区间</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-type">int</span> <span class="hljs-title function_">search</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> target)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> nums.size() - <span class="hljs-number">1</span>; <span class="hljs-comment">// 定义target在左闭右闭的区间里，[left, right]</span><br>        <span class="hljs-keyword">while</span> (left &lt;= right) &#123; <span class="hljs-comment">// 当left==right，区间[left, right]依然有效，所以用 &lt;=</span><br>            <span class="hljs-type">int</span> <span class="hljs-variable">middle</span> <span class="hljs-operator">=</span> left + ((right - left) / <span class="hljs-number">2</span>);<span class="hljs-comment">// 防止溢出 等同于(left + right)/2</span><br>            <span class="hljs-keyword">if</span> (nums[middle] &gt; target) &#123;<br>                right = middle - <span class="hljs-number">1</span>; <span class="hljs-comment">// target 在左区间，所以[left, middle - 1]</span><br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nums[middle] &lt; target) &#123;<br>                left = middle + <span class="hljs-number">1</span>; <span class="hljs-comment">// target 在右区间，所以[middle + 1, right]</span><br>            &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// nums[middle] == target</span><br>                <span class="hljs-keyword">return</span> middle; <span class="hljs-comment">// 数组中找到目标值，直接返回下标</span><br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 未找到目标值</span><br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>左右边界</p>
+<p>当寻找左边界&#x2F;右边界时，设置对应的标识(leftBorder &#x3D; -1)，寻找左边界时，条件为<code>&gt;=</code>，右边界为<code>&lt;=</code>，在对应条件的判断中更新边界标识符变量，同时更新l或者r寻找下一个位置是否满足边界条件。</p>
+</li>
+<li><p>开方数</p>
+<p>同样是寻找<code>&lt;=</code>某个值的最大值，即upperbound的计算。（可以寻找其他解法）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">mySqrt</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; <br>        <span class="hljs-type">int</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> x;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(l &lt;= r) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">mid</span>  <span class="hljs-operator">=</span> l + (r - l)/<span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span>((<span class="hljs-type">long</span>)mid * mid &lt;= x) &#123;<br>                ans = mid;<br>                l = mid + <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                r = mid - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>&gt;=</code>、<code>&gt;</code>、<code>&lt;=</code>、<code>&lt;</code>判断模板</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">   <br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="1-2-移除元素"><a href="#1-2-移除元素" class="headerlink" title="1.2 移除元素"></a>1.2 移除元素</h2>
                 
               </div>
             
@@ -292,6 +312,43 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95/LeetCode/" class="category-chain-item">LeetCode</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LeetCode/" class="print-no-link">#LeetCode</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
   
 </div>
 
@@ -301,8 +358,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>测试</div>
-      <div>http://example.com/2024/11/12/测试/</div>
+      <div>LeetCode刷题记录</div>
+      <div>http://example.com/2024/11/12/Leetcode笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -346,18 +403,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/12/Leetcode%E7%AC%94%E8%AE%B0/" title="LeetCode刷题记录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">LeetCode刷题记录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/11/12/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2024/11/12/%E6%B5%8B%E8%AF%95/" title="测试">
+                        <span class="hidden-mobile">测试</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
